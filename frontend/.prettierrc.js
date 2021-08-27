@@ -6,12 +6,13 @@ module.exports = {
   trailingComma: 'all',
   arrowParens: 'avoid',
   */
-  printWidth: 180,
+  printWidth: 150,
   tabWidth: 2,
   useTabs: false,
   semi: false,
   singleQuote: true,
   trailingComma: 'none',
   bracketSpacing: true,
-  jsxBracketSameLine: false
+  jsxBracketSameLine: false,
+  endOfLine: 'auto'
 }

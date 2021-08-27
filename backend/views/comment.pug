@@ -1,0 +1,7 @@
+extends layout 
+
+block content 
+  h1 The number of the Comment is #{comments.length}
+  each comment in comments 
+    p #{comment.user.username} #{comment.description}
+  pre #{JSON.stringify(comments, null, 4)}

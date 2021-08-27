@@ -3,6 +3,8 @@ module.exports = {
   extends: '@react-native-community',
   rules: {
     semi: 'off',
-    'comma-dangle': 'off'
+    'comma-dangle': 'off',
+    'no-shadow': 'off',
+    'react-native/no-inline-styles': 'off'
   }
 }
