@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, StatusBar, Platform, SafeAreaView, Button } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
@@ -25,9 +25,8 @@ const SearchStack = createNativeStackNavigator()
 function ExploreStack({ navigation }) {
   return (
     <SearchStack.Navigator>
-      <SearchStack.Screen name="Explore" component={Explore} />
-      <SearchStack.Screen name="Search" component={Search} />
-      <SearchStack.Screen name="ExplorePosts" component={ExplorePosts} />
+      <SearchStack.Screen name="Explore" component={Explore} options={{ headerShown: false }} />
+      <SearchStack.Screen name="ExplorePosts" component={ExplorePosts} options={{ title: 'Explore', headerTitleAlign: 'center' }} />
     </SearchStack.Navigator>
   )
 }
@@ -41,8 +40,9 @@ options={{
 function App() {
   return (
     <SafeAreaView style={styles.safeArea}>
+      <StatusBar backgroundColor="#6a51ae" barStyle="dark-content" />
       <NavigationContainer>
-        <Tab.Navigator tabBar={(props) => <TabBar {...props} />} initialRouteName="Home">
+        <Tab.Navigator screenOptions={{ headerShown: false }} tabBar={(props) => <TabBar {...props} />} initialRouteName="Home">
           <Tab.Screen name="Home" component={Home} />
           <Tab.Screen name="ExploreStack" component={ExploreStack} />
           <Tab.Screen name="Share" component={Share} />
@@ -57,9 +57,9 @@ function App() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1
-    //backgroundColor: '#fff'
+    //backgroundColor: 'white'
     //paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
-    //marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    //marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
   }
 })
 

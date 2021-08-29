@@ -1,18 +1,17 @@
 import React, { useState } from 'react'
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, Keyboard } from 'react-native'
 import { SearchInactive } from './icons'
-import { useNavigation } from '@react-navigation/native'
-import { Close } from './icons'
+import { Close, ArrowLeft } from './icons'
 
-function SearchBox() {
-  const navigation = useNavigation()
-
+function SearchBox({ onChangeIsInside, ...props }) {
   const [isFocus, setFocus] = useState(false)
+  const [isInside, setIsInside] = useState(false)
   const [searchValue, setSearchValue] = useState('')
 
   const focusToInput = () => {
-    //navigation.navigate('Search')
     setFocus(true)
+    setIsInside(true)
+    onChangeIsInside(true)
   }
 
   const onClose = () => {
@@ -24,15 +23,26 @@ function SearchBox() {
     Keyboard.dismiss()
   }
 
+  const changeContent = () => {
+    setFocus(false)
+    Keyboard.dismiss()
+    setIsInside(false)
+    onChangeIsInside(false)
+  }
+
   return (
-    <View style={styles.searchContainer}>
+    <View style={styles.searchContainer} {...props}>
+      {isInside && (
+        <TouchableOpacity onPress={changeContent} style={styles.arrowLeftButton}>
+          <ArrowLeft style={styles.arrowLeftButtonIcon} />
+        </TouchableOpacity>
+      )}
       <View style={styles.searchInputBox}>
         {!isFocus && (
           <TouchableOpacity style={styles.searchButton}>
-            <SearchInactive style={styles.searchButtonIcon} />
+            <SearchInactive style={styles.searchButtonIcon} width={22} height={22} />
           </TouchableOpacity>
         )}
-
         <TextInput
           value={searchValue}
           onChangeText={(text) => setSearchValue(text)}
@@ -42,9 +52,10 @@ function SearchBox() {
           placeholderTextColor="#716F81"
           underlineColorAndroid="transparent"
         />
+
         {searchValue.length > 0 && (
           <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-            <Close style={styles.closeButtonIcon} />
+            <Close style={styles.closeButtonIcon} width={22} height={22} />
           </TouchableOpacity>
         )}
       </View>
@@ -72,12 +83,13 @@ const styles = StyleSheet.create({
 
   //input
   searchInput: {
-    height: 52,
-    fontSize: 16,
-    backgroundColor: 'white',
+    height: 44,
+    fontSize: 18,
+    backgroundColor: '#F3F1F5',
     borderWidth: 1,
     borderColor: 'transparent',
-    borderRadius: 8,
+    //borderColor: '#DDDDDD',
+    borderRadius: 14,
     paddingLeft: 52,
     shadowColor: '#000',
     shadowOpacity: 0.1,
@@ -87,35 +99,67 @@ const styles = StyleSheet.create({
       height: 4
     }
   },
+
   focusSearchInput: {
     paddingLeft: 12,
     borderColor: '#3DB2FF'
   },
+
   //icons
   searchButton: {
     position: 'absolute',
-    left: 16,
-    top: 14,
+    left: 14,
+    top: 10,
     zIndex: 1
   },
 
   closeButton: {
     position: 'absolute',
     justifyContent: 'center',
-    right: 16,
-    top: 14
+    right: 12,
+    top: 10
   },
+
   cancelButton: {
-    height: 52,
+    height: 44,
     justifyContent: 'center',
     //borderWidth: 1,
     //borderColor: 'red',
     paddingLeft: 12,
     paddingRight: 12
   },
+
   cancelButtonText: {
     fontSize: 15
+  },
+
+  //arrow left
+  arrowLeftButton: {
+    marginRight: 9
   }
 })
 
 export default SearchBox
+
+//KEYBOARD LISTEN
+/*
+  useEffect(() => {
+    Keyboard.addListener('keyboardDidShow', keyboardDidShow)
+    Keyboard.addListener('keyboardDidHide', keyboardDidHide)
+
+    return () => {
+      Keyboard.removeAllListeners('keyboardDidShow', keyboardDidShow)
+      Keyboard.removeAllListeners('keyboardDidHide', keyboardDidHide)
+    }
+  })
+
+  const keyboardDidShow = () => {
+    console.log('keyboard is showing')
+    onChangeFocus(true)
+  }
+
+  const keyboardDidHide = () => {
+    console.log('keyboard is hiding')
+    onChangeFocus(false)
+  }
+  */

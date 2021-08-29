@@ -7,7 +7,7 @@ function Search() {
   return (
     <DismissKeyboard>
       <View style={styles.screen}>
-        <SearchBox />
+        <Text>Search Page</Text>
       </View>
     </DismissKeyboard>
   )

@@ -1,3 +1,4 @@
+export { default as ArrowLeft } from './ArrowLeft'
 export { default as Close } from './Close'
 export { default as CommentActive } from './CommentActive'
 export { default as CommentInactive } from './CommentInactive'

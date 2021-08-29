@@ -29,19 +29,16 @@ function TabBar({ state, descriptors, navigation }) {
         }
 
         const notifyControl = (label) => {
-          if (label === 'Home' || label === 'Likes') {
-            return true
-          }
+          return (label === 'Home' || label === 'Likes') && !isFocused
           /*
             if(notify ....) backende istek at ve notify varsa true döndür
           */
-          return false
         }
 
         return label === 'Share' ? (
-          <View key={label} style={{ padding: 18, marginTop: -18, borderRadius: 999, backgroundColor: '#fff' }}>
+          <View key={label} style={styles.shareContainer}>
             <TouchableOpacity onPress={onPress} style={styles.shareButton}>
-              {isFocused ? <ShareActive stroke="white" /> : <ShareInactive />}
+              {isFocused ? <ShareActive stroke="white" /> : <ShareInactive stroke="white" />}
             </TouchableOpacity>
           </View>
         ) : (
@@ -62,7 +59,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 68
+    height: 68,
+    borderTopWidth: 1,
+    borderColor: '#F3F1F5',
+    backgroundColor: 'white'
   },
   tabButton: {
     position: 'relative',
@@ -71,6 +71,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: '100%'
+  },
+  shareContainer: {
+    padding: 18,
+    marginTop: -18,
+    borderRadius: 999,
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#EEEEEE'
   },
   shareButton: {
     alignItems: 'center',
