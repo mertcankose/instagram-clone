@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, Keyboard } from 'react-native'
 import { SearchInactive } from './icons'
 import { Close, ArrowLeft } from './icons'
+import * as Animatable from 'react-native-animatable'
 
 function SearchBox({ onChangeIsInside, ...props }) {
   const [isFocus, setFocus] = useState(false)
@@ -34,7 +35,9 @@ function SearchBox({ onChangeIsInside, ...props }) {
     <View style={styles.searchContainer} {...props}>
       {isInside && (
         <TouchableOpacity onPress={changeContent} style={styles.arrowLeftButton}>
-          <ArrowLeft style={styles.arrowLeftButtonIcon} />
+          <Animatable.View animation="fadeInLeft" duration={220} easing="linear">
+            <ArrowLeft style={styles.arrowLeftButtonIcon} />
+          </Animatable.View>
         </TouchableOpacity>
       )}
       <View style={styles.searchInputBox}>
@@ -61,7 +64,9 @@ function SearchBox({ onChangeIsInside, ...props }) {
       </View>
       {isFocus && (
         <TouchableOpacity onPress={onCancel} style={styles.cancelButton}>
-          <Text style={styles.cancelButtonText}>Cancel</Text>
+          <Animatable.Text animation="fadeInRight" duration={220} easing="linear" style={styles.cancelButtonText}>
+            Cancel
+          </Animatable.Text>
         </TouchableOpacity>
       )}
     </View>

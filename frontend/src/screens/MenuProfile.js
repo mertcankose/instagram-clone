@@ -1,12 +1,12 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
-function Message() {
+function MenuProfile() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Message!</Text>
+      <Text>MenuProfile!</Text>
     </View>
   )
 }
 
-export default Message
+export default MenuProfile

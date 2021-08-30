@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
-import { Text, View, Button, StyleSheet } from 'react-native'
+import { Text, View, Button, StyleSheet, TouchableOpacity } from 'react-native'
 import SearchBox from '../components/SearchBox'
+import SearchResults from '../components/SearchResults.js'
+import Post from '../components/Post'
 
 function Explore({ navigation }) {
   const [isInside, setIsInside] = useState(false)
@@ -11,7 +13,15 @@ function Explore({ navigation }) {
         <SearchBox onChangeIsInside={(status) => setIsInside(status)} />
       </View>
 
-      <View style={styles.contentContainer}>{isInside ? <Text>Arama Sonuclari</Text> : <Button title="Go to Post" onPress={() => navigation.navigate('ExplorePosts')} />}</View>
+      <View style={styles.contentContainer}>
+        {isInside ? (
+          <SearchResults />
+        ) : (
+          <TouchableOpacity onPress={() => navigation.navigate('ExplorePosts')}>
+            <Post />
+          </TouchableOpacity>
+        )}
+      </View>
     </View>
   )
 }
