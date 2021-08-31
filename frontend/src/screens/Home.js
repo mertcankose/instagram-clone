@@ -4,6 +4,56 @@ import Post from '../components/Post.js'
 import { DirectMessageInactive } from '../components/icons/index'
 import Story from '../components/Story.js'
 
+const images = [
+  {
+    admin: true,
+    image: 'https://avatars.githubusercontent.com/u/56760896?v=4'
+  },
+  {
+    admin: false,
+    image: 'https://avatars.githubusercontent.com/u/1197375?v=4'
+  },
+  {
+    image: 'https://avatars.githubusercontent.com/u/810438?v=4'
+  },
+  {
+    admin: false,
+    image: 'https://avatars.githubusercontent.com/u/56760896?v=4'
+  },
+  {
+    admin: false,
+    image: 'https://avatars.githubusercontent.com/u/1197375?v=4'
+  },
+  {
+    admin: false,
+    image: 'https://avatars.githubusercontent.com/u/810438?v=4'
+  },
+  {
+    admin: false,
+    image: 'https://avatars.githubusercontent.com/u/56760896?v=4'
+  },
+  {
+    admin: false,
+    image: 'https://avatars.githubusercontent.com/u/1197375?v=4'
+  },
+  {
+    admin: false,
+    image: 'https://avatars.githubusercontent.com/u/810438?v=4'
+  },
+  {
+    admin: false,
+    image: 'https://avatars.githubusercontent.com/u/56760896?v=4'
+  },
+  {
+    admin: false,
+    image: 'https://avatars.githubusercontent.com/u/1197375?v=4'
+  },
+  {
+    admin: false,
+    image: 'https://avatars.githubusercontent.com/u/810438?v=4'
+  }
+]
+
 function Home({ navigation }) {
   return (
     <View style={styles.homeContainer}>
@@ -15,64 +65,22 @@ function Home({ navigation }) {
         </TouchableOpacity>
       </View>
       {/* Story */}
-      <SafeAreaView>
-        <ScrollView horizontal={true} contentContainerStyle={styles.storyContainer}>
-          <Story />
-          <Story />
-          <Story />
-          <Story />
-          <Story />
-          <Story />
-          <Story />
-          <Story />
-          <Story />
-          <Story />
-          <Story />
-          <Story />
-          <Story />
+      <View style={styles.storiesContainer}>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={styles.storiesScrollContainer}>
+          {images.map((item, index) => (
+            <Story key={index} children={item.image} style={styles.story} admin={item.admin} />
+          ))}
         </ScrollView>
-      </SafeAreaView>
-      <View></View>
+      </View>
+
       {/* content */}
-      <SafeAreaView>
-        <ScrollView contentContainerStyle={styles.postsContainer}>
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
+      <View style={styles.postsContainer}>
+        <ScrollView contentContainerStyle={styles.postsScrollContainer}>
+          {images.map((item, index) => (
+            <Post key={index} style={styles.post} />
+          ))}
         </ScrollView>
-      </SafeAreaView>
+      </View>
     </View>
   )
 }
@@ -82,6 +90,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flex: 1
   },
+
+  //header
   headerContainer: {
     height: 60,
     backgroundColor: 'white',
@@ -91,8 +101,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingLeft: 16,
-    paddingRight: 16
+    paddingHorizontal: 16
   },
   headerImage: {
     width: 120,
@@ -100,14 +109,34 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  storyContainer: {
-    height: 40,
+
+  //story
+  storiesContainer: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#f6f6f6'
+    //backgroundColor: '#f6f6f6'
+    backgroundColor: 'white',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+    marginBottom: 6
   },
+  storiesScrollContainer: {
+    alignItems: 'center',
+    paddingStart: 6,
+    paddingEnd: 6
+  },
+  story: {
+    marginHorizontal: 8
+  },
+
+  //post
   postsContainer: {
-    alignItems: 'center'
+    flex: 5
+  },
+  postsScrollContainer: {},
+  post: {
+    marginBottom: 20
   }
 })
 

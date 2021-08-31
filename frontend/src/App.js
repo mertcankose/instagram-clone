@@ -57,11 +57,11 @@ function App() {
       <StatusBar backgroundColor="#6a51ae" barStyle="dark-content" />
       <NavigationContainer>
         <Tab.Navigator tabBar={(props) => <TabBar {...props} />} screenOptions={{ headerShown: false }} initialRouteName="Home">
-          <Tab.Screen name="Home" component={HomePageStack} />
+          <Tab.Screen name="HomeStack" component={HomePageStack} />
           <Tab.Screen name="ExploreStack" component={ExplorePageStack} />
           <Tab.Screen name="Share" component={Share} options={{ headerShown: false }} />
           <Tab.Screen name="Likes" component={Likes} />
-          <Tab.Screen name="Profile" component={ProfilePageStack} />
+          <Tab.Screen name="ProfileStack" component={ProfilePageStack} />
         </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaView>

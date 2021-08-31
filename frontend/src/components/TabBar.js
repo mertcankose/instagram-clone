@@ -29,7 +29,7 @@ function TabBar({ state, descriptors, navigation }) {
         }
 
         const notifyControl = (label) => {
-          return (label === 'Home' || label === 'Likes') && !isFocused
+          return (label === 'HomeStack' || label === 'Likes') && !isFocused
           /*
             if(notify ....) backende istek at ve notify varsa true döndür
           */
@@ -43,10 +43,10 @@ function TabBar({ state, descriptors, navigation }) {
           </View>
         ) : (
           <NotifyBox key={label} onPress={onPress} style={styles.tabButton} notify={notifyControl(label)}>
-            {label === 'Home' && (isFocused ? <HomeActive /> : <HomeInactive />)}
+            {label === 'HomeStack' && (isFocused ? <HomeActive /> : <HomeInactive />)}
             {label === 'ExploreStack' && (isFocused ? <SearchActive /> : <SearchInactive />)}
             {label === 'Likes' && (isFocused ? <LikesActive fill="red" stroke="red" /> : <LikesInactive />)}
-            {label === 'Profile' && (isFocused ? <ProfileTab active={true} /> : <ProfileTab />)}
+            {label === 'ProfileStack' && (isFocused ? <ProfileTab active={true} /> : <ProfileTab />)}
           </NotifyBox>
         )
       })}
