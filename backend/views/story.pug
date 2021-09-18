@@ -1,7 +1,0 @@
-extends layout 
-
-block content 
-  h1 The number of the story is #{stories.length}
-  each story in stories 
-    p #{story.user.username}
-  pre #{JSON.stringify(stories, null, 4)}

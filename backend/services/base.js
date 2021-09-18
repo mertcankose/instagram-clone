@@ -1,6 +1,7 @@
 class Service {
   async findAll() {
-    return this.model.find(); //get all the records
+    //return this.model.find(); //get all the records
+    return this.model.find();
   }
 
   async add(item) {

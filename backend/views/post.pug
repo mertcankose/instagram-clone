@@ -1,7 +1,0 @@
-extends layout 
-
-block content 
-  h1 The number of the post is #{posts.length}
-  each post in posts 
-    p #{post.user.username} #{post.description}
-  pre #{JSON.stringify(posts, null, 4)}

@@ -1,4 +1,4 @@
-const BaseService = require("./base-service.js");
+const BaseService = require("./base.js");
 const StoryModel = require("../models/story.js");
 
 class StoryService extends BaseService {

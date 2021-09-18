@@ -1,4 +1,4 @@
-const BaseService = require("./base-service.js");
+const BaseService = require("./base.js");
 const PostModel = require("../models/post.js");
 
 class PostService extends BaseService {
@@ -6,10 +6,12 @@ class PostService extends BaseService {
 
   /*
   async add(user, item) {
-    let post = { user, ...item }
+    let post = { user, ...item };
     return this.model.create(post);
   }
   */
+
+  //async findByUserName(user) {}
 }
 
 module.exports = new PostService();

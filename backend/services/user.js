@@ -1,10 +1,14 @@
-const BaseService = require("./base-service.js");
+const BaseService = require("./base.js");
 const UserModel = require("../models/user.js");
 
 class UserService extends BaseService {
   model = UserModel;
 
-  //User methods
+  async findByUserName(userName) {
+    return this.model.find({ username: userName });
+  }
+
+  //// Follow-Unfollow ////
   async follow(user, otherUser) {
     user.follows.push(otherUser);
     otherUser.followers.push(user);
@@ -23,10 +27,10 @@ class UserService extends BaseService {
     await otherUser.save();
   }
 
-  //Post Methods
+  //// Share Post - Delete Post ////
   async sharePost(user, post) {
     user.posts.push(post);
-    post.user = user;
+    //post.user = user;
     await user.save();
     await post.save();
   }
@@ -39,6 +43,7 @@ class UserService extends BaseService {
     await post.save();
   }
 
+  //// Like-Unlike Post ////
   async likePost(user, post) {
     post.likes.push(user);
     user.liked_posts.push(post);
@@ -56,10 +61,29 @@ class UserService extends BaseService {
     await post.save();
   }
 
-  //Story Methods
+  //// Comment-Uncomment Post ////
+
+  async commentPost(user, post, comment) {
+    post.comments.push(comment);
+    //user.comments.push(comment);
+
+    //await user.save();
+    await post.save();
+  }
+
+  async deleteCommentPost(user, post, comment) {
+    const commentIndex = post.comments.findIndex((u) => u._id == comment._id);
+    post.comments.splice(commentIndex, 1);
+    //user.liked_posts.splice(likeIndex, 1);
+
+    //await user.save();
+    await post.save();
+  }
+
+  //// Share Story - Delete Story ////
   async shareStory(user, story) {
     user.stories.push(story);
-    story.user = user;
+    //story.user = user;
     await user.save();
     await story.save();
   }

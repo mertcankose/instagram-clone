@@ -9,8 +9,16 @@ const StorySchema = new mongoose.Schema({
     },
   },
   photo: {
-    data: Buffer,
-    contentType: String,
+    //data: Buffer,
+    //contentType: String,
+    type: String,
+    default: "",
+  },
+  video: {
+    //data: Buffer,
+    //contentType: String,
+    type: String,
+    default: "",
   },
 });
 

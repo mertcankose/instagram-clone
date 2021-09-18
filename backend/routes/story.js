@@ -1,30 +1,36 @@
 const express = require("express");
 const router = express.Router();
 
-const PostService = require("../services/post-service.js");
+const UserService = require("../services/user.js");
+const StoryService = require("../services/story.js");
 
 router.get("/", async (req, res) => {
-  const posts = await PostService.findAll();
-  res.render("list", { posts: posts });
+  const stories = await StoryService.findAll();
+  res.send(stories);
 });
 
-router.get("/:id", async (req, res) => {
-  const postId = req.params.id;
-  const post = await PostService.find(postId);
-
-  res.render("data", { data: post });
+router.get("/:storyId", async (req, res) => {
+  const story = await StoryService.find(req.params.storyId);
+  res.send(story);
 });
 
-router.post("/", async (req, res) => {
-  const post = await PostService.add(req.body);
-  res.send(post);
+////// Share-Delete Story //////
+
+router.post("/:userId", async (req, res) => {
+  const user = await UserService.find(req.params.userId);
+  const story = await StoryService.add(req.body);
+
+  await UserService.shareStory(user, story);
+  res.send(story);
 });
 
-router.delete("/:id", async (req, res) => {
-  const postId = req.params.id;
-  await PostService.del(postId);
+router.delete("/:userId", async (req, res) => {
+  const user = await UserService.find(req.params.userId);
+  const story = await StoryService.find(req.body.storyId);
 
-  res.send("Post deleted");
+  await UserService.deleteStory(user, story); //delete Array
+  await StoryService.del(req.body.storyId); //delete DB
+  res.send("Story deleted");
 });
 
 module.exports = router;

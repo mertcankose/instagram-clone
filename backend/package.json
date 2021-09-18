@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "instagram-backend",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,7 +12,16 @@
   "author": "mertcan",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mongoose": "^5.13.7"
+    "flatted": "^2.0.1",
+    "mongoose": "^5.13.7",
+    "mongoose-autopopulate": "^0.9.1",
+    "mongoose-type-email": "^1.1.2",
+    "validator": "^13.5.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
   }
 }
