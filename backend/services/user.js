@@ -61,6 +61,22 @@ class UserService extends BaseService {
     await post.save();
   }
 
+  //// Share Story - Delete Story ////
+  async shareStory(user, story) {
+    user.stories.push(story);
+    //story.user = user;
+    await user.save();
+    await story.save();
+  }
+
+  async deleteStory(user, story) {
+    const storyIndex = user.stories.findIndex((s) => s._id == story._id);
+    user.stories.splice(storyIndex, 1);
+
+    await user.save();
+    await story.save();
+  }
+
   //// Comment-Uncomment Post ////
 
   async commentPost(user, post, comment) {
@@ -78,22 +94,6 @@ class UserService extends BaseService {
 
     //await user.save();
     await post.save();
-  }
-
-  //// Share Story - Delete Story ////
-  async shareStory(user, story) {
-    user.stories.push(story);
-    //story.user = user;
-    await user.save();
-    await story.save();
-  }
-
-  async deleteStory(user, story) {
-    const storyIndex = user.stories.findIndex((s) => s._id == story._id);
-    user.stories.splice(storyIndex, 1);
-
-    await user.save();
-    await story.save();
   }
 }
 
