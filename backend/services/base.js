@@ -1,3 +1,5 @@
+const user = require("./user");
+
 class Service {
   async findAll() {
     //return this.model.find(); //get all the records
@@ -14,6 +16,10 @@ class Service {
 
   async find(itemId) {
     return this.model.findById(itemId);
+  }
+
+  async updateOne(itemId, body) {
+    return this.model.updateOne({ _id: itemId }, { $set: body });
   }
 }
 

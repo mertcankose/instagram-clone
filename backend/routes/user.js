@@ -55,6 +55,11 @@ router.post("/:userId/unfollow", async (req, res) => {
   res.send("User unfollow other user");
 });
 
+router.patch("/:userId", async (req, res) => {
+  await UserService.updateOne(req.params.userId, req.body);
+  res.send("User Patched");
+});
+
 /*
 router.get("/:id/name-include-mertcan", async (req, res) => {
   const userId = req.params.id;
