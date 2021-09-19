@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, StatusBar, Platform, SafeAreaView, Button } from 'react-native'
+import { StyleSheet, StatusBar, SafeAreaView } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -13,6 +13,8 @@ import ExplorePosts from './screens/ExplorePosts.js'
 import Message from './screens/Message.js'
 import MenuProfile from './screens/MenuProfile.js'
 import EditProfile from './screens/EditProfile.js'
+import Followers from './screens/Followers.js'
+import Following from './screens/Following.js'
 //components
 import TabBar from './components/TabBar.js'
 //import Ionicons from "react-native-vector-icons/Ionicons"; //kullanışlı bir kütüphane bunu daha sonra kullanabilirim
@@ -46,6 +48,8 @@ function ProfilePageStack() {
       <ProfileStack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
       <ProfileStack.Screen name="MenuProfile" component={MenuProfile} />
       <ProfileStack.Screen name="EditProfile" component={EditProfile} />
+      <ProfileStack.Screen name="Followers" component={Followers} />
+      <ProfileStack.Screen name="Following" component={Following} />
       <ProfileStack.Screen name="Share" component={Share} options={{ headerShown: false }} />
     </ProfileStack.Navigator>
   )

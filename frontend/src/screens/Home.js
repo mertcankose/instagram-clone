@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, View, StyleSheet, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native'
+import { Image, View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native'
 import Post from '../components/Post.js'
 import { DirectMessageInactive } from '../components/icons/index'
 import Story from '../components/Story.js'
@@ -54,6 +54,33 @@ const images = [
   }
 ]
 
+const posts = [
+  {
+    user: {
+      username: 'mertcankse_',
+      photo: 'https://avatars.githubusercontent.com/u/56760896?v=4'
+    },
+    photo: 'https://avatars.githubusercontent.com/u/56760896?v=4',
+    description: 'Lorem Ipsum Doler Sit Amet',
+    likes: [
+      { username: 'sdadasd', name: 'sadasd' },
+      { username: 'adasd', name: 'asdasd' }
+    ]
+  },
+  {
+    user: {
+      username: 'linuxtechtips',
+      photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7r5KQ7FfVUcYwHp2gH7_s7i_c37K2fIhNCg&usqp=CAU'
+    },
+    photo: 'https://external-preview.redd.it/TAicbXC9YyxSlOLrzNsIVU1grws7KLpjwKAlWlSDih4.png?auto=webp&s=c93edb2154c20270698fb2efff0bfa560f82c15e',
+    description: 'Amet Sit Doler Isum Lorem',
+    likes: [
+      { username: 'sdadasd', name: 'sadasd' },
+      { username: 'adasd', name: 'asdasd' }
+    ]
+  }
+]
+
 function Home({ navigation }) {
   return (
     <View style={styles.homeContainer}>
@@ -76,8 +103,8 @@ function Home({ navigation }) {
       {/* content */}
       <View style={styles.postsContainer}>
         <ScrollView contentContainerStyle={styles.postsScrollContainer}>
-          {images.map((item, index) => (
-            <Post key={index} style={styles.post} />
+          {posts.map((post, index) => (
+            <Post key={index} style={styles.post} post={post} />
           ))}
         </ScrollView>
       </View>

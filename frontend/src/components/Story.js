@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Image, View, Text } from 'react-native'
+import { StyleSheet, Image, View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import { Plus } from './icons'
 
@@ -7,7 +7,11 @@ function Story({ admin, isLook = false, style, children = 'https://avatars.githu
   return (
     <>
       {!admin ? (
-        <LinearGradient colors={!isLook ? ['#C13584', '#E1306C', '#FCAF45', '#FFDC80'] : ['#CCCCCC', '#CCCCCC']} style={[styles.storyContainer, style]} {...props}>
+        <LinearGradient
+          colors={!isLook ? ['#C13584', '#E1306C', '#FCAF45', '#FFDC80'] : ['#CCCCCC', '#CCCCCC']}
+          style={[styles.storyContainer, style]}
+          {...props}
+        >
           <Image style={styles.image} source={{ uri: children }} />
         </LinearGradient>
       ) : (
