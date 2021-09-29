@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 require("mongoose-type-email");
+const findOrCreate = require("mongoose-findorcreate");
 
 const UserSchema = new mongoose.Schema({
   username: {
@@ -13,10 +14,21 @@ const UserSchema = new mongoose.Schema({
     require: true,
     minLength: 2,
   },
-  email: mongoose.SchemaTypes.Email,
+  email: {
+    type: mongoose.SchemaTypes.Email,
+    require: true,
+    unique: true,
+  },
   password: {
     type: String,
     require: true,
+  },
+  googleId: {
+    type: String,
+    default: "",
+  },
+  secret: {
+    type: String,
   },
   followers: [
     {
@@ -93,6 +105,7 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.plugin(require("mongoose-autopopulate"));
+UserSchema.plugin(findOrCreate);
 
 const UserModel = mongoose.model("User", UserSchema);
 
